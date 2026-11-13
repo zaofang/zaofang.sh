@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZAOFANG(7)</title>
+<meta name="description" content="Zaofang (造坊) is a one-person workshop. It makes yan and mandate.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Geist:wght@400;500&family=Newsreader:opsz,wght@6..72,400&family=Noto+Serif+SC&display=swap">
+<style>
+$tokens
+:root { $plates_dark }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { $plates_light } }
+:root[data-theme="light"] { $plates_light }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--zf-bg); color: var(--zf-text); font: 16px/1.6 var(--zf-font-text); }
+a { color: var(--zf-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--zf-link); outline-offset: 2px; }
+::selection { background: var(--zf-selection); }
+svg { display: block; height: auto; max-width: 100%; }
+.mono, pre, code { font-family: var(--zf-font-mono); }
+header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 32px; border-bottom: 1px solid var(--zf-border); }
+header svg { width: 132px; }
+header nav { display: flex; gap: 22px; font-size: 14px; }
+header nav a { color: var(--zf-text-muted); }
+main { max-width: 860px; margin: 0 auto; padding: 28px 32px 36px; }
+.manhead, .manfoot { display: flex; justify-content: space-between; gap: 12px; font: 13px var(--zf-font-mono); color: var(--zf-text-muted); }
+.manfoot { border-top: 1px solid var(--zf-border); padding-top: 12px; margin-top: 36px; }
+.typeon { margin: 40px 0 36px; }
+.typeon svg { width: 360px; }
+dl { display: grid; grid-template-columns: 9.5rem 1fr; gap: 26px 24px; margin: 0; }
+dt { font: 500 13px/1.9 var(--zf-font-mono); letter-spacing: .06em; }
+dd { margin: 0; min-width: 0; }
+dd p { margin: 0 0 10px; max-width: 62ch; }
+.prose p { font: 400 19px/1.55 var(--zf-font-display); }
+pre { margin: 0; font-size: 14px; line-height: 1.7; background: var(--zf-surface); padding: 10px 14px; overflow-x: auto; border-left: 2px solid var(--zf-border); }
+.projs { display: grid; gap: 18px; }
+.proj { display: grid; grid-template-columns: 196px 1fr; gap: 18px; align-items: center; }
+.plate { display: flex; align-items: center; justify-content: center; height: 92px; }
+.plate.yn { background: var(--yn-bg); color: var(--yn-text); }
+.plate.yn svg { width: 112px; }
+.plate.yn .seal, .plate.yn .word { fill: currentColor; }
+.plate.yn .tone { fill: var(--yn-tone); }
+.plate.md { background: var(--md-bg); }
+.plate.md svg { width: 150px; }
+.pname { font: 500 15px var(--zf-font-mono); margin-bottom: 2px !important; }
+.pname span, .pfacts { color: var(--zf-text-muted); font-weight: 400; }
+.pfacts { font: 13px var(--zf-font-mono); margin-top: 4px !important; }
+.see { font-size: 14px; }
+@media (max-width: 640px) {
+  header { padding: 14px 16px; } header nav { gap: 14px; }
+  main { padding: 20px 16px 28px; } .manhead .mid { display: none; }
+  .typeon svg { width: 240px; }
+  dl { grid-template-columns: 1fr; gap: 6px; } dd { margin-bottom: 18px; }
+  .prose p { font-size: 18px; }
+  .proj { grid-template-columns: 1fr; gap: 10px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" aria-label="zaofang">$lockup</a>
+  <nav><a href="#projects">projects</a><a href="https://github.com/zaofang">github</a></nav>
+</header>
+<main>
+  <div class="manhead"><span>ZAOFANG(7)</span><span class="mid">Workshop Manual</span><span>ZAOFANG(7)</span></div>
+  <div class="typeon" role="img" aria-label="zaofang">$typeon</div>
+  <dl>
+    <dt>NAME</dt>
+    <dd><p><b class="mono">$name</b> - $name_rest</p></dd>
+    <dt>SYNOPSIS</dt>
+    <dd><pre>$synopsis</pre></dd>
+    <dt>DESCRIPTION</dt>
+    <dd class="prose">$description</dd>
+    <dt id="projects">PROJECTS</dt>
+    <dd><div class="projs">$projects</div></dd>
+    <dt>SEE ALSO</dt>
+    <dd><p class="mono see">$see_also</p></dd>
+  </dl>
+  <div class="manfoot"><span>zaofang $today</span><span>ZAOFANG(7)</span></div>
+</main>
+</body>
+</html>
