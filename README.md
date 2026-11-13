@@ -1,18 +1,20 @@
 # zaofang.sh
 
-ZAOFANG(7), the Zaofang home page. One source, `content.toml`, renders to `dist/index.html` for browsers and `dist/index.txt` for terminals:
+The Zaofang home page. One source, `content.toml`, renders to `dist/index.html` for browsers and `dist/index.txt` for terminals:
 
 ```sh
 curl zaofang.sh
 ```
 
+This is the interim page. The fuller ZAOFANG(7) manual version is in commit 32769e7.
+
 ## Build
 
-Marks and colours are read from clones of zaofang/brand, zaofang/yan and zaofang/mandate, never copied in.
+The lockup and colour tokens are read from a clone of zaofang/brand, never copied in.
 
 ```sh
-uv run build.py --src ..   # expects ../brand, ../yan, ../mandate
-sh build.sh                # clones them to a temp dir first
+uv run build.py --brand ../brand
+sh build.sh                       # clones zaofang/brand to a temp dir first
 ```
 
 ## Deploy
@@ -29,4 +31,4 @@ Cloudflare Pages, connected to this repository:
 
 ## Edit
 
-Change `content.toml` for words, `page.html` for layout. The page follows the Zaofang brand (Lamplight tokens, Newsreader, Geist, DM Mono); projects keep their own identities.
+Change `content.toml` for words, `page.html` for layout.

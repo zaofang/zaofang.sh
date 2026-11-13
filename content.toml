@@ -1,19 +1,14 @@
-name = "zaofang - one workshop, one lamp on"
-synopsis = ["curl zaofang.sh", "gh repo list zaofang"]
-description = [
-  "Zaofang (造坊, zàofáng) means making workshop. One person works here, with agents. Each tool leaves the bench under its own name and carries a small maker's stamp.",
-  "Everything is open source, at github.com/zaofang.",
-]
-see_also = ["https://github.com/zaofang", "https://github.com/zaofang/brand"]
+lines = ["a one-person workshop.", "tools for writing software."]
+github = "https://github.com/zaofang"
 
 [[projects]]
 id = "yan"
-summary = "A programming language with one core and many surfaces."
-status = "active"
+summary = "a programming language with one core and many surfaces"
+status = "in development"
 url = "https://github.com/zaofang/yan"
 
 [[projects]]
 id = "mandate"
-summary = "A project management framework for agent-built software."
-status = "milestone 003, CLI"
+summary = "project management for agent-built software"
+status = "in development"
 url = "https://github.com/zaofang/mandate"

@@ -1,4 +1,4 @@
-// Terminal clients get ZAOFANG(7) as text; browsers get HTML.
+// Terminal clients get the text page; browsers get HTML.
 const TERMINAL = /^(curl|wget|httpie|xh|fetch)\b/i;
 
 export async function onRequest({ request, next, env }) {
