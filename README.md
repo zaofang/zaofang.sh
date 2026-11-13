@@ -26,8 +26,8 @@ At `/` it sends `index.txt` when the `Accept` header prefers `text/plain` to `te
 
 ### Cloudflare setup
 
-1. Workers and Pages: create an API token from the "Edit Cloudflare Workers" template, scoped to this account and the zaofang.sh zone.
-2. In this repository's Actions secrets, add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+1. My Profile, API Tokens, Create Custom Token, named for this repository only. Permissions: Account, Workers Scripts, Edit; Account, Account Settings, Read; Zone, Workers Routes, Edit. Resources: this account, and the zaofang.sh zone only. Do not use the "Edit Cloudflare Workers" template; it also grants account-wide R2 and KV edit.
+2. This repository, Settings, Environments: create `production`, set deployment branches to `main` only, and add the secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` there, not as repository secrets. Only the deploy job, on main, can read them.
 3. Remove zaofang.sh from the custom domains of the old Pages project `zaofang-sh`, then delete that project.
 4. zaofang.sh zone, SSL/TLS, Edge Certificates: turn off Always Use HTTPS. The Worker redirects browsers itself.
 5. Run the workflow on main. `wrangler deploy` attaches the custom domain zaofang.sh.
