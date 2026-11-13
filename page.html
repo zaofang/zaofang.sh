@@ -6,10 +6,9 @@
 <title>zaofang</title>
 <meta name="description" content="Zaofang (造坊) is a one-person workshop. It makes tools for writing software.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
+<link rel="preload" href="/fonts/$font" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face { font-family: 'DM Mono'; src: url(/fonts/$font) format('woff2'); font-display: swap; }
 $tokens
 * { box-sizing: border-box; }
 html, body { height: 100%; }
