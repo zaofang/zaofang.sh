@@ -1,0 +1,10 @@
+name = "zaofang-sh"
+main = "worker.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+routes = [{ pattern = "zaofang.sh", custom_domain = true }]
+
+[assets]
+directory = "dist"
+binding = "ASSETS"
+run_worker_first = true
