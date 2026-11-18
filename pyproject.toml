@@ -3,7 +3,7 @@ name = "zaofang-sh"
 version = "0.1.0"
 description = "zaofang.sh: ZAOFANG(7), rendered as HTML and as plain text"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = ["fonttools[woff]>=4.60"]
 
 [tool.uv]
 package = false
