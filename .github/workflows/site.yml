@@ -1,0 +1,59 @@
+name: site
+
+# Renders zaofang.sh from content.toml plus a clone of zaofang/brand and deploys it to Cloudflare
+# Workers static assets. Brand changes land in a separate repository, so the site also rebuilds on a
+# schedule.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "37 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-${{ github.event_name == 'pull_request' && github.ref || 'main' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  WRANGLER_VERSION: "4.151.3"
+  WRANGLER_SEND_METRICS: "false"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - run: git clone --quiet --depth 1 https://github.com/zaofang/brand "$RUNNER_TEMP/brand"
+      - run: uv run build.py --brand "$RUNNER_TEMP/brand"
+      # Validates the config and bundles the worker without uploading.
+      - run: npx --yes "wrangler@$WRANGLER_VERSION" deploy --dry-run
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: site
+          path: dist
+          include-hidden-files: true
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    # Holds CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID; deployment branches: main only.
+    environment:
+      name: production
+      url: https://zaofang.sh/
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: site
+          path: dist
+      - run: npx --yes "wrangler@$WRANGLER_VERSION" deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
