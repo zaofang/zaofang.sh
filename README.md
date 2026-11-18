@@ -19,15 +19,9 @@ sh build.sh                       # clones zaofang/brand to a temp dir first
 
 ## Deploy
 
-Cloudflare Pages, connected to this repository:
+Cloudflare Workers static assets, deployed by `.github/workflows/site.yml` on push to main (and every 6 hours, to pick up brand changes). The `production` environment holds `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. `wrangler.jsonc` binds the custom domain zaofang.sh.
 
-| Setting | Value |
-|---|---|
-| Build command | `sh build.sh` |
-| Output directory | `dist` |
-| Environment variable | `PYTHON_VERSION=3.13` |
-
-`functions/_middleware.js` sends `index.txt` to curl, wget, HTTPie and xh at `/`, and HTML to everyone else.
+`worker.js` sends `index.txt` to curl, wget, HTTPie, xh and fetch at `/`, HTML to everyone else, and redirects plain http to https.
 
 ## Edit
 
