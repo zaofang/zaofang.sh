@@ -39,7 +39,7 @@ def page(c: dict, brand: Path, year: str) -> str:
     e = html.escape
     rows = "".join(
         f'<tr><td><a href="{p["url"]}">{e(p["id"])}</a></td><td class="d m">{e(p["summary"])}</td>'
-        f'<td class="m">{e(p["status"])} <span aria-hidden="true">↗</span></td></tr>'
+        f'<td class="m">{e(p["status"])}</td></tr>'
         for p in c["projects"]
     )
     lines = f'{e(c["lines"][0])}<br><span class="m">{"<br>".join(e(x) for x in c["lines"][1:])}</span>'
